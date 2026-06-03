@@ -1,13 +1,23 @@
 # Workshop — Mổ App AI Thật: Trợ lý Moni (MoMo)
 
 **Thời gian:** 35-45 phút  
-**Hình thức:** cá nhân  
-**Người thực hiện:** (Học viên điền tên)
+**Hình thức:** cá nhân trước, chia sẻ theo nhóm sau  
+**Người thực hiện:** Phạm Hoàng Anh  
 **Sản phẩm:** MoMo — Trợ thủ tài chính Moni
 
 ---
 
-## 1. Dùng thử: promise vs reality
+## 1. Chọn một sản phẩm để dùng thử
+
+| Sản phẩm | AI feature | Cách truy cập | Lựa chọn |
+|---|---|---|---|
+| MoMo — Moni | Trợ thủ tài chính, phân tích chi tiêu, chatbot | App MoMo | [x] Đã chọn |
+| Vietnam Airlines — NEO | Chatbot hỗ trợ vé, hành lý, khiếu nại | Website/Zalo VNA | [ ] |
+| V-App — V-AI | Trợ lý voice/text, gợi ý theo ngữ cảnh | App V-App | [ ] |
+
+---
+
+## 2. Dùng thử: promise vs reality
 
 - **Product hứa gì?** Moni đóng vai trò là một "trợ thủ tài chính cá nhân" AI, giúp người dùng tra cứu nhanh, quản lý chi tiêu và giải đáp thắc mắc về các giao dịch trên MoMo thông qua chat.
 - **User nào được hứa sẽ được giúp?** Người dùng MoMo thường xuyên có nhu cầu tra cứu lại lịch sử giao dịch (mua sắm, chuyển tiền, ăn uống, v.v.) mà không muốn lướt tìm thủ công.
@@ -18,7 +28,9 @@
   - **Evidence:** Mặc dù AI phân tích Entity rất tốt (nhận diện được số tiền), nhưng Logic truy vấn DB lại bị gãy cứng nhắc (fallback to failure) vì dường như hệ thống đòi hỏi phải có Category keyword (loại giao dịch) mới chịu tìm kiếm hiệu quả.
   ![Moni Error](/Users/a/Documents/research/ai/task_ai/Batch02-Day05-AI-Product-Labs/01-invidual-workshop/image1.png)
 
-## 2. Vẽ 4 paths (Phân tích thiết kế của Moni)
+---
+
+## 3. Vẽ 4 paths (Phân tích thiết kế của Moni)
 
 | Path | Nhận xét hiện tại của Moni |
 |---|---|
@@ -27,7 +39,9 @@
 | **Failure** | AI báo lỗi "Mình không tìm thấy...". User cảm thấy ức chế vì "3tr4" là một dữ liệu rất lớn và cụ thể, rất dễ tìm bằng mắt nhưng AI lại không tự quét ra được. Cách sửa là user tự phải đoán và đổi prompt thêm keyword "chuyển tiền". |
 | **Correction** | User tự sửa prompt. AI phản hồi đúng, nhưng hệ thống không ghi nhận thói quen tra cứu này cho lần sau. |
 
-## 3. Viết finding thành quyết định
+---
+
+## 4. Viết finding thành quyết định
 
 ```text
 Khi user [nhập lệnh tìm kiếm giao dịch kèm số tiền rất cụ thể nhưng thiếu loại giao dịch (ví dụ: "tìm giao dịch 3tr4 gần nhất")],
@@ -39,7 +53,9 @@ Nên sửa bằng [Cải thiện hàm Tool + Clarification UX]. Cụ thể:
 2. UX Recovery: Nếu database trả về nhiều kết quả 3tr4 thuộc các loại khác nhau -> AI kích hoạt UX Clarification với các nút bấm để user chọn (VD: Chuyển tiền / Thanh toán).
 ```
 
-## 4. Sketch as-is / to-be
+---
+
+## 5. Sketch as-is / to-be
 
 ### AS-IS (Luồng hiện tại)
 
